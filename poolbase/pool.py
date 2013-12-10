@@ -5,7 +5,6 @@ HappyBase connection pool module.
 import contextlib
 import logging
 import Queue
-import socket
 import threading
 
 from .connection import Connection
@@ -128,7 +127,7 @@ method waits forever for a connection to become available.
             # Return value from the context manager's __enter__()
             yield connection
 
-        except socket.error:
+        except BaseException:
             # Refresh the underlying Thrift client if an exception
             # occurred in the Thrift layer, since we don't know whether
             # the connection is still usable.
