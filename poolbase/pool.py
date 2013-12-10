@@ -8,8 +8,6 @@ import Queue
 import socket
 import threading
 
-from thrift.Thrift import TException
-
 from .connection import Connection
 
 logger = logging.getLogger(__name__)
@@ -130,7 +128,7 @@ method waits forever for a connection to become available.
             # Return value from the context manager's __enter__()
             yield connection
 
-        except (TException, socket.error):
+        except socket.error:
             # Refresh the underlying Thrift client if an exception
             # occurred in the Thrift layer, since we don't know whether
             # the connection is still usable.
