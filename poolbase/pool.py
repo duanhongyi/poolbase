@@ -6,6 +6,7 @@ import contextlib
 import logging
 import Queue
 import threading
+import socket
 
 from .connection import Connection
 
@@ -127,7 +128,7 @@ method waits forever for a connection to become available.
             # Return value from the context manager's __enter__()
             yield connection
 
-        except BaseException:
+        except socket.error:
             # Refresh the underlying Thrift client if an exception
             # occurred in the Thrift layer, since we don't know whether
             # the connection is still usable.
