@@ -7,7 +7,7 @@ def get_file_contents(filename):
         return fp.read()
 
 setup(name='poolbase',
-    version='0.1.2',
+    version='0.1.3',
     description="A connection pool for anything",
     long_description=get_file_contents('README.rst'),
     author="duanhongyi",
