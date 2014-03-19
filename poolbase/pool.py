@@ -128,10 +128,11 @@ method waits forever for a connection to become available.
             # Return value from the context manager's __enter__()
             yield connection
 
-        except socket.error:
+        except BaseException as e:
             # Refresh the underlying Thrift client if an exception
             # occurred in the Thrift layer, since we don't know whether
             # the connection is still usable.
+            logger.exception(e)
             logger.info("Replacing tainted pool connection")
             connection.refresh()
             connection.open()
