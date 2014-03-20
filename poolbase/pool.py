@@ -6,7 +6,6 @@ import contextlib
 import logging
 import Queue
 import threading
-import socket
 
 from .connection import Connection
 
